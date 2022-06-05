@@ -203,3 +203,27 @@ from (
           assignment.dimcustomer dc
   ) pivot (count(*) for age_group in (1, 2, 3))
 ) group by 1, 2 order by 1, 2;`
+
+6 - Based on your results for question #2 above, create a visualization to highlight the sales territories with the lowest sales performances. Are there any territories with consistent low sales performance over time?
+
+The initial analysis of the lowest revenue-generating product of 2012 found that  the AWC Logo Cap was the most frequent lowes revenue-generating product of 2012, with three entries for the monts of February, May, and June. However, even more frequent than it was the United Kingdom. As country of sales territory, the UK was by far the most frequent country, with eight entries. That means that two thirds of the year this country sold the lowest revenue-generating product. The second country was France, with three entries. It is important to notice that this initial analysis only considers data from 2012. For this task, we have to take into consideration the whole dataset, which also adds more data about the Australian and German markets, which only began in the end of 2012.
+
+The European and Australian markets as a whole have consistently the weakest sales performance of all regions in comparison with the North American market, specially the US, being Australia the weakest one. This indicates that there is a significant difference in Europe and Australia, whereas in North America the market is more established. Comparing the revenue by region, we can assert that the American market, the best one by far, is actually comprised by several regions. Thus, the conclusion is not that in Europe and Australia sales are weak, but that the US and Canada are far bigger countries, with multiple regions, so it makes more sense to think in regions, not countries. Even though Australia is also big, it is a relatively new market, thus the sales in Australia are likely contained within on region of the country.
+
+7 - Create a visualization based on your results for question #3 above, so that the user can switch between scenarios and account types. Please explain what insight can we gain from these results.
+
+This visualization will take into consideration that there only exists current and budget scenario. It is possible to choose the account type, the scenario name, and the date parameters, which can be the period and the date part, i.e. day, month or year.
+
+The data was presented in a table to facilitate the readability of the data. However, a time series was also added, following the same parameters, so it is possible to visually interpret the tabular data, specially in situations where the date parameters compromise the readability.
+
+Both visualizations allow the viewer not only to compare different scenarios and account types, but also visualize how each figure change over time. There is an increased level of possibilities, as all date parameters are customizable.
+
+8 - Create a visualization based on your results for question #5 above. Please explain what insight can we gain from these results.
+
+Initially analysis focused on the age group of less than 35 years of age, between 35 and 50, and greater 50 years of age. However, that took into consideration today, June 2022. The dataset ends at the end of 2013, thus it would make more sense to limit the age group calculation to 2013, so we would have people in all age groups. If we took into consideration today as reference, we would have no one in the less than 35 years age group, because the youngest customer was born in 1986 (which makes they 36 years old).
+
+The analysis below demonstrantes that there are more married customers in age groups between 35 and 50, and greater than 50 years. Additionally, there is a predominance of male customers in all groups, except for single customers over 50, which suggests that there are more female widow customers. The median and the mean age of customers between groups is similar, suggesting that the distribution of age between groups is similar to the normal distribution,  which is expected for age variables.
+
+In terms of education and occupation, the difference between age groups is quite similar to what is expected, that is, the older age groups have a higher proportion of higher education and professional and management occupations.
+
+Finally, the last plot tells us that the age group between 35 and 50 is the predominant one in terms of new customers throughout the dataset, suggesting that age group are more likely to become new customers than all other groups. Additionally, we can see that there was an influx of new customers in early 2013, possibly due to the new markets of Germany and Australia. Finally, we can see that the age groups of lees than 35 and greater 50 were quite similar in terms of new customers, but that changed in late 2012, which suggests that after this period the company had more eligible senior customers.
