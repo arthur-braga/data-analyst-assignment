@@ -179,7 +179,7 @@ from
 
 The first step for this task is to determine the age group. This is possible by using the datediff function, which lets us compare the age of customers as compared to today's date. However, I believe this database is quite old, as the customers have aged and, in 2022, there is no one that is under 35 years old. To be 35 years old or less, the person should be born after 1987, and there is no one in such conditions. Using `select max(orderdate) from assignment.factresellersales`, I can see that the most recent order date is November 29, 2013. If we take that date into consideration, we would have 4388 people with less than 35 years old. Nevertheless, I am going to stick with current age, thus there won't be anyone aged below 35.
 To write the query, I've used the pivot function again, this time to create the columns for the age groups. However, this time this operation was not enough, so I've inserted it into a subquery, so I can agreggate the sum of the values for each age group. The result is the following code:
-`create or replace view assignment.customers_age_marital_gender_2012 as
+`create or replace view assignment.customers_age_marital_gender as
 select
 	case when maritalstatus = 'M' then 'Married' else 'Single' end as maritalstatus,
     case when gender = 'M' then 'Male' else 'Female' end as gender,
