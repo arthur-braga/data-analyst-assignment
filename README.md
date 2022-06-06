@@ -13,10 +13,10 @@ This README documents the analysis of the following seven different tables, bein
 - Fact Finance; and
 - Fact Reseller Sales.
 
-To initiate this analysis, all tables were loaded to an AWS Redshift database. This step was done using a free trial AWS account, and all data wrangling operations were done using AWS's virtual IDE.
+To initiate this analysis, all tables were loaded to an AWS Redshift database. This step was done using a free trial AWS account, and all data wrangling operations were done using AWS's virtual SQL IDE.
 
-Initially, there were some issues with the tables, as they were not previosuly cleaned. The files were loaded as .csv files, and all fields were set to VARCHAR. The tables were erroneously loaded with the first row being the column-names, and these were properly dropped. To remove these rows, I've used this SQL operation:
-`delete from assignment.dimproduct where productkey = 'ProductKey'`
+Initially, there were some issues with the tables, as they were not previosuly cleaned. The files were loaded as .csv files, and all fields were set to the fields contained in the .csv filed. To stop from erroneously loading the header rows, an additional parameter was added. I've used this SQL operation:
+`COPY dev.assignment.dimaccounts2 FROM 's3://dev-assignment-data-analyst/Data Analyst Assignment - DimAccounts.csv' IAM_ROLE 'arn:aws:iam::508300259937:role/devassignment' FORMAT AS CSV DELIMITER ',' QUOTE '"' IGNOREHEADER 1 REGION AS 'us-east-2'`
 
 As the data was loaded, AWS Redshift was able to identify what most columns were, so it was not necessary to alter column types from VARCHAR to different ones in most cases. Additionally, it was necessary to change few values which were supposed to be set as NULL, as AWS Redshift loaded them as a VARCHAR 'NULL'. In every single column that had this issue, I've used the following SQL operation:
 `update assignment.dimaccounts da
@@ -34,7 +34,7 @@ For date time fields, some fields were set to '00:00.0'. For this reason, there 
 set enddate = NULL
 where enddate = '00:00.0';`
 
-AWS was not able to identify numeric and date time types, and labelled them as VARCHAR. To solve this issue, I had to inspect all tables and run the following SQL operations:
+AWS was not able to identify numeric and date time types. The former was not loaded with its decimal parts, and the latter had multiple issues, as stated below. For that, I've labelled all such variables as VARCHAR, and manually adjusted them. I've used the following SQL operations:
 `alter table assignment.dimproduct add column standardcost_new numeric(10,6);
 update assignment.dimproduct 
 set standardcost_new = cast(standardcost as numeric(10,6));
